@@ -36,7 +36,7 @@ defmodule Props.AuthController do
         conn
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_user, user)
-        |> redirect(to: "/")
+        |> redirect(to: Props.Router.Helpers.props_path(Props.Endpoint, :index))
       {:error, reason} ->
         conn
         |> put_flash(:error, reason)
