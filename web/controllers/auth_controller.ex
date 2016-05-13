@@ -1,3 +1,5 @@
+require IEx
+
 defmodule Props.AuthController do
   @moduledoc """
   Auth controller responsible for handling Ueberauth responses
@@ -7,6 +9,8 @@ defmodule Props.AuthController do
   plug Ueberauth
 
   alias Ueberauth.Strategy.Helpers
+  alias Props.User
+  alias Props.Repo
 
   def request(conn, _params) do
     render(conn, "request.html", callback_url: Helpers.callback_url(conn))
@@ -26,8 +30,8 @@ defmodule Props.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    IO.puts auth
-    case UserFromAuth.find_or_create(auth) do
+    changeset = User.changeset(%User{}, auth.extra.raw_info.user)
+    case Repo.insert(changeset) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Successfully authenticated.")
