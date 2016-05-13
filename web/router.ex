@@ -13,6 +13,10 @@ defmodule Props.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticated do
+    plug Props.RedirectsPlug
+  end
+
   scope "/", Props do
     pipe_through :browser # Use the default browser stack
 
@@ -24,6 +28,12 @@ defmodule Props.Router do
 
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
+  end
+
+  scope "/props", Props do
+    pipe_through [:browser, :authenticated]
+
+    get "/", PropsController, :index
   end
 
   # Other scopes may use custom stacks.
