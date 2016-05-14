@@ -1,0 +1,12 @@
+%h1 New User
+
+%form{action="/props"}
+  %input{type: "hidden", name: "csrf_token", value: "<%= csrf_token @conn %>"}
+  .form-group
+    %label{for: "user[content]"} Content
+    %input{type: "text", name: "user[content]", class: "form-control"}
+    - if @errors != nil do
+      %ul
+        %li
+          - @errors.content
+  %button{type: "submit", class: "btn btn-primary"} Save

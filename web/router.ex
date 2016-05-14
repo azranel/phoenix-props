@@ -30,10 +30,10 @@ defmodule Props.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
-  scope "/props", Props do
+  scope "/", Props do
     pipe_through [:browser, :authenticated]
 
-    get "/", PropsController, :index
+    resources "/props", PropsController
   end
 
   # Other scopes may use custom stacks.
