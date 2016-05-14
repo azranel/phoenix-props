@@ -1,0 +1,13 @@
+%h1 Hello world!
+
+
+- for prop <- @props do
+  .prop
+    .prop__user
+      = prop.user.first_name
+      = prop.user.last_name
+    .prop__propser
+      = prop.propser.first_name
+      = prop.propser.last_name
+    .prop__body
+      = prop.body
