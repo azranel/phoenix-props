@@ -28,8 +28,10 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
-# Configure uberauth 
+# Configure uberauth
 config :ueberauth, Ueberauth,
   providers: [
     google: {Ueberauth.Strategy.Google, []}
   ]
+
+import_config "#{Mix.env}.secret.exs"
