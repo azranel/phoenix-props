@@ -28,10 +28,16 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
+# Configure HAML parser
+config :phoenix, :template_engines,
+  haml: PhoenixHaml.Engine
+
 # Configure uberauth
 config :ueberauth, Ueberauth,
   providers: [
     google: {Ueberauth.Strategy.Google, []}
   ]
 
-import_config "#{Mix.env}.secret.exs"
+if Mix.env == "dev" do
+  import_config "#{Mix.env}.secret.exs"
+end

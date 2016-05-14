@@ -37,7 +37,8 @@ defmodule Props.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:ueberauth_google, "~> 0.2"}]
+     {:ueberauth_google, "~> 0.2"},
+     {:phoenix_haml, "~> 0.2.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

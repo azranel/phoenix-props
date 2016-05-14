@@ -32,6 +32,16 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
+# Add HAML files to live reload :D
+config :props, HelloPhoenix.Endpoint,
+    live_reload: [
+      patterns: [
+        ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+        ~r{web/views/.*(ex)$},
+        ~r{web/templates/.*(eex|haml)$}
+      ]
+    ]
+
 # Configure your database
 config :props, Props.Repo,
   adapter: Ecto.Adapters.Postgres,
