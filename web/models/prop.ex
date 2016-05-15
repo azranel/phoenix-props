@@ -9,7 +9,7 @@ defmodule Props.Prop do
     timestamps
   end
 
-  @required_fields ~w(body)
+  @required_fields ~w(body user_id propser_id)
   @optional_fields ~w()
 
   @doc """
