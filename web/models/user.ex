@@ -13,6 +13,10 @@ defmodule Props.User do
   @required_fields ~w(email last_name first_name picture)
   @optional_fields ~w()
 
+  def name(user) do
+    "#{user.first_name} #{user.last_name}"
+  end
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 
