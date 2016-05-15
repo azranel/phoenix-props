@@ -1,12 +1,16 @@
 %h1 New User
 
-%form{action="/props"}
-  %input{type: "hidden", name: "csrf_token", value: "<%= csrf_token @conn %>"}
+- form_for @changeset, props_path(@conn, :create), fn f ->
+  - if @changeset.action do
+    .alert.alert-danger
+      %p
+        Oops, something went wrong! Please check the errors below.
+  %label
+    To who you you want to give prop?
+    = select f, :user_id, @users_list
+  %label
+    Body text
+    = textarea f, :body
+
   .form-group
-    %label{for: "user[content]"} Content
-    %input{type: "text", name: "user[content]", class: "form-control"}
-    - if @errors != nil do
-      %ul
-        %li
-          - @errors.content
-  %button{type: "submit", class: "btn btn-primary"} Save
+    = submit "Submit", class: "btn btn-primary"
